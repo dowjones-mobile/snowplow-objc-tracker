@@ -40,6 +40,7 @@ NSString * const kSPVersion               = @"osx-1.6.0";
 
 NSString * const kSPContentTypeHeader     = @"application/json; charset=utf-8";
 NSString * const kSPAcceptContentHeader   = @"text/html, application/x-www-form-urlencoded, text/plain, image/gif";
+NSString * const kSPOriginHeaderField     = @"Origin";
 NSInteger  const kSPDefaultBufferTimeout  = 60;
 NSString * const kSPEndpointPost          = @"/com.snowplowanalytics.snowplow/tp2";
 NSString * const kSPEndpointGet           = @"/i";

@@ -102,6 +102,7 @@ const NSUInteger POST_WRAPPER_BYTES = 88;
         [builder setEmitThreadPoolSize:strongSelf->_emitThreadPoolSize];
         [builder setByteLimitGet:strongSelf->_byteLimitGet];
         [builder setByteLimitPost:strongSelf->_byteLimitPost];
+        [builder setOriginHeaderField:strongSelf->_originHeaderField];
     }];
 }
 
@@ -187,6 +188,13 @@ const NSUInteger POST_WRAPPER_BYTES = 88;
 - (void)setEventStore:(id<SPEventStore>)eventStore {
     if (!_builderFinished || !_eventStore || [_eventStore count] == 0 ) {
         _eventStore = eventStore;
+    }
+}
+
+- (void)setOriginHeaderField:(NSString *)originHeader {
+    _originHeaderField = originHeader;
+    if (_builderFinished && _networkConnection) {
+        [self setupNetworkConnection];
     }
 }
 

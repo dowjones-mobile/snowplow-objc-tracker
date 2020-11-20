@@ -69,6 +69,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void) setCustomPostPath:(NSString *)customPath;
 
+/*!
+ @brief Builder method to set a custom Origin header field.
+ @param originHeader A custom value to be set as the Origin http header.
+ */
+- (void)setOriginHeaderField:(NSString *)originHeader;
+
 @end
 
 @interface SPDefaultNetworkConnection : NSObject <SPNetworkConnection, SPDefaultNetworkConnectionBuilder>

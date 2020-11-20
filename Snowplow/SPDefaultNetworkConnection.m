@@ -33,6 +33,7 @@
     NSUInteger _byteLimitGet;
     NSUInteger _byteLimitPost;
     NSString *_customPostPath;
+    NSString *_originHeaderField;
 
     NSOperationQueue *_dataOperationQueue;
     NSURL *_urlEndpoint;
@@ -129,6 +130,10 @@
     _customPostPath = customPath;
 }
 
+- (void)setOriginHeaderField:(NSString *)originHeader {
+    _originHeaderField = originHeader;
+}
+
 // MARK: - Implement SPNetworkConnection protocol
 
 - (SPRequestOptions)httpMethod {
@@ -188,6 +193,7 @@
     [urlRequest setValue:[NSString stringWithFormat:@"%@", @(requestData.length).stringValue] forHTTPHeaderField:@"Content-Length"];
     [urlRequest setValue:kSPAcceptContentHeader forHTTPHeaderField:@"Accept"];
     [urlRequest setValue:kSPContentTypeHeader forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:_originHeaderField forHTTPHeaderField:kSPOriginHeaderField];
     [urlRequest setHTTPMethod:@"POST"];
     [urlRequest setHTTPBody:requestData];
     return urlRequest;

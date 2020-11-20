@@ -48,6 +48,7 @@ extern NSString * const kSPVersion;
 
 extern NSString * const kSPContentTypeHeader;
 extern NSString * const kSPAcceptContentHeader;
+extern NSString * const kSPOriginHeaderField;
 extern NSInteger  const kSPDefaultBufferTimeout;
 extern NSString * const kSPEndpointPost;
 extern NSString * const kSPEndpointGet;

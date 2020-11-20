@@ -27,9 +27,9 @@ typedef NS_ENUM(NSInteger, SPScreenType);
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIViewController (SPScreenView_SWIZZLE)
+@interface UIViewController (Tracking)
 
-- (void) SP_viewDidAppear:(BOOL)animated;
+- (void) trackSnowPlowEvent;
 - (NSString *) _SP_getViewControllerName:(UIViewController *)viewController;
 - (SPScreenType) _SP_getViewControllerType:(UIViewController *)viewController;
 - (SPScreenType) _SP_getTopViewControllerType;

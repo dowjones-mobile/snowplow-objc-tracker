@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, SPScreenType);
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIViewController (SPScreenView_SWIZZLE)
+@interface UIViewController (Tracking)
 
 - (void) trackSnowPlowEvent;
 - (NSString *) _SP_getViewControllerName:(UIViewController *)viewController;

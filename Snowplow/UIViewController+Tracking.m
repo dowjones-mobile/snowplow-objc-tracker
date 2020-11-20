@@ -28,10 +28,9 @@
 #import "UIViewController+Tracking.h"
 #import <objc/runtime.h>
 
-@implementation UIViewController (SPScreenView_SWIZZLE)
+@implementation UIViewController (Tracking)
 
 - (void) trackSnowPlowEvent {
-
     // Construct userInfo
     NSMutableDictionary * userInfo = [[NSMutableDictionary alloc] init];
     userInfo[@"viewControllerClassName"] = NSStringFromClass([self class]);

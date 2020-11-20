@@ -138,6 +138,12 @@ typedef NS_ENUM(NSUInteger, SPBufferOption) {
  */
 - (void) setEventStore:(id<SPEventStore>)eventStore;
 
+/*!
+ @brief Emitter builder method to set origin header http.
+ @param originHeader A custom value to be set as the Origin http header.
+ */
+- (void) setOriginHeaderField:(NSString *)originHeader;
+
 @end
 
 /*!
@@ -168,6 +174,8 @@ typedef NS_ENUM(NSUInteger, SPBufferOption) {
 @property (readonly, nonatomic, weak) id<SPRequestCallback> callback;
 /*! @brief Custom endpoint path for POST requests. */
 @property (readonly, nonatomic) NSString *customPostPath;
+/*! @brief Custom origin header field for POST requests. */
+@property (readonly, nonatomic) NSString *originHeaderField;
 
 /*!
  @brief Builds the emitter using a build block of functions.

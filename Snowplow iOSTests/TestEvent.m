@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "SPEvent.h"
+#import "SPTrackerError.h"
 #import "SPSelfDescribingJson.h"
 
 @interface TestEvent : XCTestCase
@@ -108,11 +109,14 @@
     XCTAssertNil([event getTrueTimestamp]);
 
     // Set trueTimestamp
+    NSNumber *testDate = @([[NSDate date] timeIntervalSince1970]);
     event = [SPPageView build:^(id<SPPageViewBuilder> builder) {
         [builder setPageUrl:@"DemoPageUrl"];
-        [builder setTrueTimestamp:@(1234567890)];
+        [builder setTrueTimestamp:testDate];
     }];
-    XCTAssertEqualObjects([event getTrueTimestamp], @(1234567890));
+    long long expected = (long long)(testDate.doubleValue * 1000);
+    long long testing = (long long)([event getTrueTimestamp].doubleValue * 1000);
+    XCTAssertEqual(testing, expected);
 }
 
 - (void)testPageViewBuilderConditions {
@@ -813,6 +817,19 @@
     }];
     
     XCTAssertNotNil(error);
+}
+
+- (void)testTrackerErrorContainsStacktrace {
+    @try {
+        @throw([NSException exceptionWithName:@"CustomException" reason:@"reason" userInfo:nil]);
+    } @catch (NSException *exception) {
+        SPTrackerError *trackerError = [[SPTrackerError alloc] initWithSource:@"classname" message:@"message" error:nil exception:exception];
+        NSDictionary<NSString *, NSObject *> *payload = trackerError.payload;
+        XCTAssertEqualObjects(payload[@"message"], @"message");
+        XCTAssertEqualObjects(payload[@"className"], @"classname");
+        XCTAssertEqualObjects(payload[@"exceptionName"], @"CustomException");
+        XCTAssertTrue([(NSString *)payload[@"stackTrace"] length]);
+    }
 }
 
 // --- Helpers

@@ -22,6 +22,7 @@
 
 #import "SPTrackerEvent.h"
 #import "SPSelfDescribingJson.h"
+#import "SPTrackerError.h"
 
 @implementation SPTrackerEvent
 
@@ -36,14 +37,15 @@
             self.eventId = [NSUUID UUID];
         }
         if (event.timestamp) {
-            self.timestamp = event.timestamp.doubleValue / 1000;
+            self.timestamp = event.timestamp.longLongValue;
         } else {
-            self.timestamp = [[[NSDate alloc] init] timeIntervalSince1970];
+            self.timestamp = (long long)([[[NSDate alloc] init] timeIntervalSince1970] * 1000);
         }
         self.trueTimestamp = event.trueTimestamp;
         self.contexts = [event.contexts mutableCopy];
         self.payload = [event.payload mutableCopy];
 
+        self.isService = [event isKindOfClass:SPTrackerError.class];
         if ([event isKindOfClass:SPPrimitive.class]) {
             self.eventName = [(SPPrimitive *)event name];
             self.isPrimitive = true;

@@ -32,11 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSString *schema;
 @property (nonatomic) NSString *eventName;
 @property (nonatomic) NSUUID *eventId;
-@property (nonatomic) NSTimeInterval timestamp;
+@property (nonatomic) long long timestamp;
 @property (nonatomic) NSNumber *trueTimestamp;
 @property (nonatomic) NSMutableArray<SPSelfDescribingJson *> *contexts;
 
 @property (nonatomic) BOOL isPrimitive;
+@property (nonatomic) BOOL isService;
 
 + (instancetype) new NS_UNAVAILABLE;
 - (instancetype) init NS_UNAVAILABLE;

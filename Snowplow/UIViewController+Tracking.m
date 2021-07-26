@@ -115,18 +115,19 @@
 }
 
 - (UIViewController *) _SP_topViewController {
-    UIWindow *keyWindow = nil;
-    NSArray<UIWindow *> *windows = [UIApplication sharedApplication].windows;
-    for (UIWindow *window in windows) {
-        if (window.isKeyWindow) {
-            keyWindow = window;
-            break;
-        }
-    }
-    if (!keyWindow) {
-        return nil;
-    }
-    return [self _SP_topViewController:keyWindow.rootViewController];
+//    UIWindow *keyWindow = nil;
+//    NSArray<UIWindow *> *windows = [UIApplication sharedApplication].windows;
+//    for (UIWindow *window in windows) {
+//        if (window.isKeyWindow) {
+//            keyWindow = window;
+//            break;
+//        }
+//    }
+//    if (!keyWindow) {
+//        return nil;
+//    }
+    return nil;
+//    return [self _SP_topViewController:keyWindow.rootViewController];
 }
 
 - (UIViewController *) _SP_topViewController:(UIViewController *)rootViewController {

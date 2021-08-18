@@ -40,16 +40,8 @@
     return [[OpenIDFA threeDaysOpenIDFAArray] objectAtIndex:0];
 }
 
-+ (BOOL) canOpenURL:(NSURL *)URL {
-// @selector(sharedApplication) does not exist when building app extensions instead
-// of apps. With strict objc_msgSend message checking turned on, calls to the class
-// method will become compile-time warnings. To prevent that from happening, build
-// with -DSNOWPLOW_APP_EXTENSIONS=1.
-#if defined(SNOWPLOW_APP_EXTENSIONS)
-    return NO;
-#else
++ (BOOL) canOpenURL:(NSURL *)URL NS_EXTENSION_UNAVAILABLE_IOS("This is not available for App extensions.") {
     return [[UIApplication sharedApplication] canOpenURL:URL];
-#endif
 }
 
 + (NSArray*) threeDaysOpenIDFAArray {

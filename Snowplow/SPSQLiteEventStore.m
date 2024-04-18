@@ -25,12 +25,7 @@
 #import "SPPayload.h"
 #import "SPUtilities.h"
 #import "SPLogger.h"
-
-#if SWIFT_PACKAGE
-    #import <FMDB.h>
-#else
-    #import <fmdb/FMDB.h>
-#endif
+#import <FMDB.h>
 
 @interface SPSQLiteEventStore ()
 
